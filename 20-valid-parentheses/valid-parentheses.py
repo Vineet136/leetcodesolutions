@@ -1,22 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-
-        pairs = {
-            ')': '(',
-            ']': '[',
-            '}': '{'
-        }
-
-        for ch in s:
-            if ch in '([{':
-                stack.append(ch)
+        closeToOpen={"}":"{",
+        "]":"[",
+        ")":"("}
+        for c in s:
+            if c in "[{(":
+                stack.append(c)
             else:
-                if not stack or stack[-1] != pairs[ch]:
+                if len(stack)==0 or stack[-1]!=closeToOpen[c]:
                     return False
-                stack.pop()
+                else:
+                    stack.pop()
+        return True if len(stack)==0 else False
 
-        return len(stack) == 0
+
+
+ 
         
         
         
